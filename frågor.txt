@@ -1,0 +1,17 @@
+git pull använder man för att hämta hämta ändringar från till exempel github. Push skickar lokala ändringar till github, vilket gör att andra personer kan se ändringar som man har gjort.
+
+git log visar historiken av commits i ens repository, medans git status visar den aktuella statusen för ens arbetskatalog. Man kan använda git status när man vill se vad som behöver stagas eller commitas till exempel.
+
+En branch kallas oftast för main eller master och representerar en specifik utveckling av en applikation. Varje branch har egna commits som låter en arbeta med olika funktioner, fixa buggar eller testa ideér utan att störa huvudprojektet. Branches är viktiga eftersom de isolerar ens arbete som låter en testa olika ideér som sagt utan att riskera huvudprojektet. Branches tillåter även att flera personer kan jobba på samma projekt samtidigt. 
+
+En annan viktig grej med branches är att de kan felsöka efter fel och buggar innan de mergas till huvudprojektet. 
+
+Det finns några olika sätt att ändra koden till ett tidigare tillstånd, till exempel git reset som används för att flytta pekaren till ett tidigare tillstånd. Det finns tre varianter till git reset: --soft, --mixed och --hard. 
+
+git reset --soft HEAD~1 - flyttar huvudpekaren till en tidigare commit, samtidigt som den behåller alla ändringar i staging area, vilket är användningsbart om man vill göra om vissa commits utan att förlora koden. Detta kommando visar ingen output, men i git status ser man att ändringarna finns i staging area. 
+
+git reset --mixed HEAD~1 - flyttar huvudpekaren och lämnar ändringarna unstaged i arbetskatalogen, man kan säga att mixed är som att använda en undo på både commit och staging. I git status visas det att ändringarna är unstaged, annars visas ingen output.
+
+git reset --hard HEAD~1 - återställer huvudpekaren och arbetskatalogen till en tidigare commit och alla ändringar raderas permanent. Detta exemplet raderar ändringarna och går tillbaka till det tillstånd som var vid den tidigare committen. I git log kan man se att man nu står på den tidigare committen, annars visas ingen output. 
+
+Det finns även git revert som skapar en commit som tar bort ändringar i en tidigare commit utan att radera historiken, vilket är bra för att behålla spårbarheten. Till exempel: git revert HEAD. Detta exempel skapar en commit och ångrar den senaste committen. Efter man har kört detta visas en texteditor på skärmen (såsom nano) för commit meddelandet. I git log kan man se den nya revert committen. 
